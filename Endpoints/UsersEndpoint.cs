@@ -16,7 +16,7 @@ public class UsersEndpoint : IEndpoints
         app.MapMethods("/api/users", new[] {"POST", "GET"},
             (HttpRequest request) =>
             {
-                // there is not a "FromForm" option for Minimal API. This is a quick a dirty workaround.
+                // there is not a "FromForm" option for Minimal API. This is a quick and dirty workaround.
                 int site = -1;
                 try
                 {
