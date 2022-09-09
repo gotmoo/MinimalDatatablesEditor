@@ -26,7 +26,7 @@ public  class StaffEndpoint : IEndpoints
             (HttpRequest request) => {  
                 var dbType = Environment.GetEnvironmentVariable("DBTYPE");
                 var dbConnection = Environment.GetEnvironmentVariable("DBCONNECTION"); 
-                using var db = new Database("sqlserver", dbConnection);
+                using var db = new Database(dbType, dbConnection);
                 var response = new Editor(db, "datatables_demo")
                     .Model<StaffModel>()
                     .Field(new Field("first_name")
