@@ -1,5 +1,5 @@
 # MinimalDatatablesEditor
-Datatables.net Editor sample project implemented with DotNet 6 minimal API.
+Datatables.net Editor sample project implemented with DotNet 7 minimal API.
 
 This project takes the official sample code from https://editor.datatables.net/download/index and changes it from an MVC setup to Minimal API instead.
 
