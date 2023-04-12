@@ -153,15 +153,21 @@ and (max-width: 780px) {
 		position: fixed;
 		top: 0;
 		left: 0;
-		width: 100%;
-		margin-left: 0;
-
-		div.DTED_Lightbox_Close {
-			right: 0 !important;
-		}
+		width: 90%;
+		margin-left: 5%;
 	}
 }
 
+@media only screen
+and (max-width: 580px) {
+	body div.DTED_Lightbox_Wrapper {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		margin-left: 0;
+	}
+}
 
 
 

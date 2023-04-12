@@ -88,6 +88,7 @@ div.DTE_Bubble {
   z-index: 11;
   margin-top: -6px;
   opacity: 0;
+  transition: top 0.5s ease-in-out 0s;
 }
 div.DTE_Bubble div.DTE_Bubble_Liner {
   position: absolute;
@@ -200,20 +201,13 @@ div.DTE_Bubble_Background {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  /* Fallback */
-  background: -ms-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* IE10 Consumer Preview */
-  background: -moz-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* Firefox */
-  background: -o-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* Opera */
-  background: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, rgba(0, 0, 0, 0.3)), color-stop(1, rgba(0, 0, 0, 0.7)));
-  /* Webkit (Safari/Chrome 10) */
-  background: -webkit-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* Webkit (Chrome 11+) */
-  background: radial-gradient(ellipse farthest-corner at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* W3C Markup, IE10 Release Preview */
+  background: rgba(0, 0, 0, 0.7); /* Fallback */
+  background: -ms-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* IE10 Consumer Preview */
+  background: -moz-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* Firefox */
+  background: -o-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* Opera */
+  background: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, rgba(0, 0, 0, 0.3)), color-stop(1, rgba(0, 0, 0, 0.7))); /* Webkit (Safari/Chrome 10) */
+  background: -webkit-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* Webkit (Chrome 11+) */
+  background: radial-gradient(ellipse farthest-corner at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* W3C Markup, IE10 Release Preview */
   z-index: 10;
 }
 div.DTE_Bubble_Background > div {
@@ -258,6 +252,7 @@ div.DTE div.editor_upload input[type=file] {
   font-size: 0.8em;
   text-align: center;
   line-height: 1em;
+  margin: 0;
 }
 div.DTE div.editor_upload input[type=file] {
   position: absolute;
@@ -275,8 +270,9 @@ div.DTE div.editor_upload div.drop {
   border-radius: 6px;
   min-height: 4em;
   color: #999;
-  padding-top: 3px;
   text-align: center;
+  padding: 1em 2em;
+  line-height: 1.1em;
 }
 div.DTE div.editor_upload div.drop.over {
   border: 3px dashed #111;
@@ -309,7 +305,6 @@ div.DTE div.editor_upload.multi div.cell {
 }
 div.DTE div.editor_upload.multi div.cell div.drop {
   min-height: 0;
-  padding-bottom: 5px;
 }
 div.DTE div.editor_upload.multi div.clearValue {
   display: none;
@@ -442,7 +437,12 @@ div.modal-content div.dataTables_info span.select-item {
 }
 
 div.DTE_Form_Buttons {
+  display: flex;
+  flex-direction: row-reverse;
   padding-top: 10px;
+}
+div.DTE_Form_Buttons button {
+  margin-left: 0.5em;
 }
 
 div.card {

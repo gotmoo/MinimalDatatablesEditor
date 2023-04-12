@@ -1,5 +1,5 @@
 /*! Bootstrap integration for DataTables' Editor
- * ©2015 SpryMedia Ltd - datatables.net/license
+ * © SpryMedia Ltd - datatables.net/license
  */
 
 (function( factory ){
@@ -11,21 +11,37 @@
 	}
 	else if ( typeof exports === 'object' ) {
 		// CommonJS
-		module.exports = function (root, $) {
-			if ( ! root ) {
-				root = window;
-			}
-
-			if ( ! $ || ! $.fn.dataTable ) {
-				$ = require('datatables.net-bs5')(root, $).$;
+		var jq = require('jquery');
+		var cjsRequires = function (root, $) {
+			if ( ! $.fn.dataTable ) {
+				require('datatables.net-bs5')(root, $);
 			}
 
 			if ( ! $.fn.dataTable.Editor ) {
 				require('datatables.net-editor')(root, $);
 			}
-
-			return factory( $, root, root.document );
 		};
+
+		if (typeof window !== 'undefined') {
+			module.exports = function (root, $) {
+				if ( ! root ) {
+					// CommonJS environments without a window global must pass a
+					// root. This will give an error otherwise
+					root = window;
+				}
+
+				if ( ! $ ) {
+					$ = jq( root );
+				}
+
+				cjsRequires( root, $ );
+				return factory( $, root, root.document );
+			};
+		}
+		else {
+			cjsRequires( window, jq );
+			module.exports = factory( jq, window, window.document );
+		}
 	}
 	else {
 		// Browser
@@ -36,6 +52,8 @@
 var DataTable = $.fn.dataTable;
 
 
+var Editor = DataTable.Editor;
+
 /*
  * Set the default display controller to be our bootstrap control 
  */
@@ -43,26 +61,21 @@ DataTable.Editor.defaults.display = "bootstrap";
 
 
 /*
- * Alter the buttons that Editor adds to Buttons so they are suitable for bootstrap
- */
-var i18nDefaults = DataTable.Editor.defaults.i18n;
-i18nDefaults.create.title = '<h5 class="modal-title">'+i18nDefaults.create.title+'</h5>';
-i18nDefaults.edit.title = '<h5 class="modal-title">'+i18nDefaults.edit.title+'</h5>';
-i18nDefaults.remove.title = '<h5 class="modal-title">'+i18nDefaults.remove.title+'</h5>';
-
-
-/*
  * Change the default classes from Editor to be classes for Bootstrap
  */
 $.extend( true, $.fn.dataTable.Editor.classes, {
 	"header": {
-		"wrapper": "DTE_Header modal-header"
+		"wrapper": "DTE_Header",
+		title: {
+			tag: 'h5',
+			class: 'modal-title'
+		}
 	},
 	"body": {
-		"wrapper": "DTE_Body modal-body"
+		"wrapper": "DTE_Body"
 	},
 	"footer": {
-		"wrapper": "DTE_Footer modal-footer"
+		"wrapper": "DTE_Footer"
 	},
 	"form": {
 		"tag": "form-horizontal",
@@ -132,7 +145,7 @@ DataTable.Editor.display.bootstrap = $.extend( true, {}, DataTable.Editor.models
 	 */
 	init: function ( dte ) {
 		// Add `form-control` to required elements
-		dte.on( 'displayOrder.dtebs', function ( e, display, action, form ) {
+		dte.on( 'displayOrder.dtebs open.dtebs', function ( e, display, action, form ) {
 			$.each( dte.s.fields, function ( key, field ) {
 				$('input:not([type=checkbox]):not([type=radio]), select, textarea', field.node() )
 					.addClass( 'form-control' );
@@ -157,6 +170,9 @@ DataTable.Editor.display.bootstrap = $.extend( true, {}, DataTable.Editor.models
 		}
 
 		$(append).addClass('modal-content');
+		$('.DTE_Header', append).addClass('modal-header');
+		$('.DTE_Body', append).addClass('modal-body');
+		$('.DTE_Footer', append).addClass('modal-footer');
 
 		// Special class for DataTable buttons in the form
 		$(append).find('div.DTE_Field_Type_datatable div.dt-buttons')
@@ -194,6 +210,30 @@ DataTable.Editor.display.bootstrap = $.extend( true, {}, DataTable.Editor.models
 		var content = dom.content.find('div.modal-dialog');
 		content.children().detach();
 		content.append( append );
+
+		// Floating label support - rearrange the DOM for the inputs
+		if (dte.c.bootstrap && dte.c.bootstrap.floatingLabels) {
+			var floating_label_types = ['readonly', 'text', 'textarea', 'select', 'datetime']
+			var fields = dte.order();
+
+			fields
+				.filter(function (f) {
+					var type = dte.field(f).s.opts.type;
+
+					return floating_label_types.includes(type);
+				})
+				.forEach(function(f) {
+					var node = $(dte.field(f).node());
+					var wrapper = node.find('.DTE_Field_InputControl');
+					var control = wrapper.children(':first-child');
+					var label = node.find('label');
+
+					wrapper.parent().removeClass('col-lg-8').addClass('col-lg-12');
+					wrapper.addClass('form-floating');
+					control.addClass('form-control').attr("placeholder", f);
+					label.appendTo(wrapper);
+				});
+		}
 
 		if ( shown ) {
 			if ( callback ) {
@@ -262,9 +302,9 @@ DataTable.Editor.display.bootstrap = $.extend( true, {}, DataTable.Editor.models
 
 	node: function ( dte ) {
 		return dom.content[0];
-	}
+	},
 } );
 
 
-return DataTable.Editor;
+return Editor;
 }));

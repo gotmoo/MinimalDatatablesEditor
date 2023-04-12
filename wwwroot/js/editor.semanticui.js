@@ -1,5 +1,5 @@
 /*! Semantic UI integration for DataTables' Editor
- * ©2018 SpryMedia Ltd - datatables.net/license
+ * © SpryMedia Ltd - datatables.net/license
  */
 
 (function( factory ){
@@ -11,21 +11,37 @@
 	}
 	else if ( typeof exports === 'object' ) {
 		// CommonJS
-		module.exports = function (root, $) {
-			if ( ! root ) {
-				root = window;
-			}
-
-			if ( ! $ || ! $.fn.dataTable ) {
-				$ = require('datatables.net-se')(root, $).$;
+		var jq = require('jquery');
+		var cjsRequires = function (root, $) {
+			if ( ! $.fn.dataTable ) {
+				require('datatables.net-se')(root, $);
 			}
 
 			if ( ! $.fn.dataTable.Editor ) {
 				require('datatables.net-editor')(root, $);
 			}
-
-			return factory( $, root, root.document );
 		};
+
+		if (typeof window !== 'undefined') {
+			module.exports = function (root, $) {
+				if ( ! root ) {
+					// CommonJS environments without a window global must pass a
+					// root. This will give an error otherwise
+					root = window;
+				}
+
+				if ( ! $ ) {
+					$ = jq( root );
+				}
+
+				cjsRequires( root, $ );
+				return factory( $, root, root.document );
+			};
+		}
+		else {
+			cjsRequires( window, jq );
+			module.exports = factory( jq, window, window.document );
+		}
 	}
 	else {
 		// Browser
@@ -35,6 +51,9 @@
 'use strict';
 var DataTable = $.fn.dataTable;
 
+
+
+var Editor = DataTable.Editor;
 
 /*
  * Set the default display controller to be Semantic UI modal
@@ -124,7 +143,7 @@ DataTable.Editor.display.semanticui = $.extend( true, {}, DataTable.Editor.model
 	init: function ( dte ) {
 		// Make select lists semantic ui dropdowns if possible
 		if ($.fn.dropdown) {
-			dte.on( 'displayOrder.dtebs', function ( e, display, action, form ) {
+			dte.on( 'displayOrder.dtesu open.dtesu', function ( e, display, action, form ) {
 				$.each( dte.s.fields, function ( key, field ) {
 					$('select', field.node())
 						.addClass('fluid')
@@ -233,5 +252,5 @@ DataTable.Editor.display.semanticui = $.extend( true, {}, DataTable.Editor.model
 } );
 
 
-return DataTable.Editor;
+return Editor;
 }));

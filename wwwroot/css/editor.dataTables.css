@@ -37,7 +37,7 @@ div.DTE div.DTE_Form_Info {
 }
 div.DTE div.DTE_Form_Content {
   position: relative;
-  padding: 10px;
+  padding: 1em;
 }
 div.DTE div.DTE_Form_Error {
   float: left;
@@ -48,6 +48,10 @@ div.DTE div.DTE_Form_Error {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+div.DTE div.DTE_Form_Buttons {
+  display: flex;
+  flex-direction: row-reverse;
+}
 div.DTE button.btn,
 div.DTE div.DTE_Form_Buttons button {
   position: relative;
@@ -56,7 +60,6 @@ div.DTE div.DTE_Form_Buttons button {
   margin-top: 0;
   padding: 0.5em 1em;
   cursor: pointer;
-  float: right;
   margin-left: 0.75em;
   color: inherit;
   font-size: 14px;
@@ -70,16 +73,11 @@ div.DTE div.DTE_Form_Buttons button {
   -webkit-box-shadow: 1px 1px 3px #ccc;
   -moz-box-shadow: 1px 1px 3px #ccc;
   box-shadow: 1px 1px 3px #ccc;
-  background-color: #dcdcdc;
-  /* Fallback */
-  background-image: -webkit-linear-gradient(top, #ffffff 0%, #dcdcdc 100%);
-  /* Chrome 10+, Saf5.1+, iOS 5+ */
-  background-image: -moz-linear-gradient(top, #ffffff 0%, #dcdcdc 100%);
-  /* FF3.6 */
-  background-image: -ms-linear-gradient(top, #ffffff 0%, #dcdcdc 100%);
-  /* IE10 */
-  background-image: -o-linear-gradient(top, #ffffff 0%, #dcdcdc 100%);
-  /* Opera 11.10+ */
+  background-color: #dcdcdc; /* Fallback */
+  background-image: -webkit-linear-gradient(top, #ffffff 0%, #dcdcdc 100%); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image: -moz-linear-gradient(top, #ffffff 0%, #dcdcdc 100%); /* FF3.6 */
+  background-image: -ms-linear-gradient(top, #ffffff 0%, #dcdcdc 100%); /* IE10 */
+  background-image: -o-linear-gradient(top, #ffffff 0%, #dcdcdc 100%); /* Opera 11.10+ */
   background-image: linear-gradient(to bottom, #ffffff 0%, #dcdcdc 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr="#ffffff", EndColorStr="#dcdcdc");
 }
@@ -89,16 +87,11 @@ div.DTE div.DTE_Form_Buttons button:hover {
   -webkit-box-shadow: 1px 1px 3px #999;
   -moz-box-shadow: 1px 1px 3px #999;
   box-shadow: 1px 1px 3px #999;
-  background-color: #cccccc;
-  /* Fallback */
-  background-image: -webkit-linear-gradient(top, #eaeaea 0%, #cccccc 100%);
-  /* Chrome 10+, Saf5.1+, iOS 5+ */
-  background-image: -moz-linear-gradient(top, #eaeaea 0%, #cccccc 100%);
-  /* FF3.6 */
-  background-image: -ms-linear-gradient(top, #eaeaea 0%, #cccccc 100%);
-  /* IE10 */
-  background-image: -o-linear-gradient(top, #eaeaea 0%, #cccccc 100%);
-  /* Opera 11.10+ */
+  background-color: #cccccc; /* Fallback */
+  background-image: -webkit-linear-gradient(top, #eaeaea 0%, #cccccc 100%); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image: -moz-linear-gradient(top, #eaeaea 0%, #cccccc 100%); /* FF3.6 */
+  background-image: -ms-linear-gradient(top, #eaeaea 0%, #cccccc 100%); /* IE10 */
+  background-image: -o-linear-gradient(top, #eaeaea 0%, #cccccc 100%); /* Opera 11.10+ */
   background-image: linear-gradient(to bottom, #eaeaea 0%, #cccccc 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr="#eaeaea", EndColorStr="#cccccc");
 }
@@ -112,16 +105,11 @@ div.DTE button.btn:focus,
 div.DTE div.DTE_Form_Buttons button:focus {
   border: 1px solid #426c9e;
   text-shadow: 0 1px 0 #c4def1;
-  background-color: #79ace9;
-  /* Fallback */
-  background-image: -webkit-linear-gradient(top, #bddef4 0%, #79ace9 100%);
-  /* Chrome 10+, Saf5.1+, iOS 5+ */
-  background-image: -moz-linear-gradient(top, #bddef4 0%, #79ace9 100%);
-  /* FF3.6 */
-  background-image: -ms-linear-gradient(top, #bddef4 0%, #79ace9 100%);
-  /* IE10 */
-  background-image: -o-linear-gradient(top, #bddef4 0%, #79ace9 100%);
-  /* Opera 11.10+ */
+  background-color: #79ace9; /* Fallback */
+  background-image: -webkit-linear-gradient(top, #bddef4 0%, #79ace9 100%); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image: -moz-linear-gradient(top, #bddef4 0%, #79ace9 100%); /* FF3.6 */
+  background-image: -ms-linear-gradient(top, #bddef4 0%, #79ace9 100%); /* IE10 */
+  background-image: -o-linear-gradient(top, #bddef4 0%, #79ace9 100%); /* Opera 11.10+ */
   background-image: linear-gradient(to bottom, #bddef4 0%, #79ace9 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr="#bddef4", EndColorStr="#79ace9");
   outline: none;
@@ -241,6 +229,7 @@ div.DTE_Field select {
   border-radius: 3px;
   border: 1px solid #aaa;
   background: white;
+  max-width: 100%;
 }
 div.DTE_Field label div.DTE_Label_Info {
   font-size: 0.85em;
@@ -429,7 +418,7 @@ div.DTE_Body div.DTE_Body_Content div.DTE_Form_Info {
 div.DTE_Body div.DTE_Body_Content div.DTE_Field {
   position: relative;
   clear: both;
-  padding: 5px 20%;
+  padding: 5px 10%;
   border: 1px solid transparent;
 }
 div.DTE_Body div.DTE_Body_Content div.DTE_Field:after {
@@ -446,21 +435,15 @@ div.DTE_Body div.DTE_Body_Content div.DTE_Field:hover {
 }
 div.DTE_Body div.DTE_Body_Content div.DTE_Field > label {
   float: left;
-  width: 40%;
+  width: 33%;
   padding-top: 3px;
 }
 div.DTE_Body div.DTE_Body_Content div.DTE_Field > div.DTE_Field_Input {
   float: right;
-  width: 60%;
+  width: 66%;
 }
 div.DTE_Body div.DTE_Body_Content div.DTE_Field.full {
-  padding: 5px 0 5px 20%;
-}
-div.DTE_Body div.DTE_Body_Content div.DTE_Field.full > label {
-  width: 30%;
-}
-div.DTE_Body div.DTE_Body_Content div.DTE_Field.full > div.DTE_Field_Input {
-  width: 70%;
+  padding: 5px 0 5px 10%;
 }
 div.DTE_Body div.DTE_Body_Content div.DTE_Field.block > div.DTE_Field_Input {
   float: none;
@@ -526,13 +509,15 @@ html[dir=rtl] div.DTE div.DTE_Form_Buttons button {
   div.DTE_Body div.DTE_Body_Content div.DTE_Field > div.DTE_Field_Input {
     float: none;
     width: auto;
+    margin-top: 4px;
+    margin-bottom: 6px;
   }
   div.DTE_Body div.DTE_Body_Content div.DTE_Field.full, div.DTE_Body div.DTE_Body_Content div.DTE_Field.block {
     padding: 5px 0;
   }
   div.DTE_Body div.DTE_Body_Content div.DTE_Field.full > label,
-div.DTE_Body div.DTE_Body_Content div.DTE_Field.full > div.DTE_Field_Input, div.DTE_Body div.DTE_Body_Content div.DTE_Field.block > label,
-div.DTE_Body div.DTE_Body_Content div.DTE_Field.block > div.DTE_Field_Input {
+  div.DTE_Body div.DTE_Body_Content div.DTE_Field.full > div.DTE_Field_Input, div.DTE_Body div.DTE_Body_Content div.DTE_Field.block > label,
+  div.DTE_Body div.DTE_Body_Content div.DTE_Field.block > div.DTE_Field_Input {
     width: 100%;
   }
 }
@@ -541,6 +526,7 @@ div.DTE_Bubble {
   z-index: 11;
   margin-top: -6px;
   opacity: 0;
+  transition: top 0.5s ease-in-out 0s;
 }
 div.DTE_Bubble div.DTE_Bubble_Liner {
   position: absolute;
@@ -653,20 +639,13 @@ div.DTE_Bubble_Background {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  /* Fallback */
-  background: -ms-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* IE10 Consumer Preview */
-  background: -moz-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* Firefox */
-  background: -o-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* Opera */
-  background: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, rgba(0, 0, 0, 0.3)), color-stop(1, rgba(0, 0, 0, 0.7)));
-  /* Webkit (Safari/Chrome 10) */
-  background: -webkit-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* Webkit (Chrome 11+) */
-  background: radial-gradient(ellipse farthest-corner at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* W3C Markup, IE10 Release Preview */
+  background: rgba(0, 0, 0, 0.7); /* Fallback */
+  background: -ms-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* IE10 Consumer Preview */
+  background: -moz-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* Firefox */
+  background: -o-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* Opera */
+  background: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, rgba(0, 0, 0, 0.3)), color-stop(1, rgba(0, 0, 0, 0.7))); /* Webkit (Safari/Chrome 10) */
+  background: -webkit-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* Webkit (Chrome 11+) */
+  background: radial-gradient(ellipse farthest-corner at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* W3C Markup, IE10 Release Preview */
   z-index: 10;
 }
 div.DTE_Bubble_Background > div {
@@ -854,20 +833,13 @@ div.DTED_Lightbox_Background {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  /* Fallback */
-  background: -ms-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* IE10 Consumer Preview */
-  background: -moz-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* Firefox */
-  background: -o-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* Opera */
-  background: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, rgba(0, 0, 0, 0.3)), color-stop(1, rgba(0, 0, 0, 0.7)));
-  /* Webkit (Safari/Chrome 10) */
-  background: -webkit-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* Webkit (Chrome 11+) */
-  background: radial-gradient(ellipse farthest-corner at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* W3C Markup, IE10 Release Preview */
+  background: rgba(0, 0, 0, 0.7); /* Fallback */
+  background: -ms-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* IE10 Consumer Preview */
+  background: -moz-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* Firefox */
+  background: -o-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* Opera */
+  background: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, rgba(0, 0, 0, 0.3)), color-stop(1, rgba(0, 0, 0, 0.7))); /* Webkit (Safari/Chrome 10) */
+  background: -webkit-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* Webkit (Chrome 11+) */
+  background: radial-gradient(ellipse farthest-corner at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* W3C Markup, IE10 Release Preview */
   z-index: 10;
 }
 div.DTED_Lightbox_Background > div {
@@ -941,11 +913,17 @@ body.DTED_Lightbox_Mobile div.DTED_Lightbox_Wrapper div.DTED_Lightbox_Container 
     position: fixed;
     top: 0;
     left: 0;
+    width: 90%;
+    margin-left: 5%;
+  }
+}
+@media only screen and (max-width: 580px) {
+  body div.DTED_Lightbox_Wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     margin-left: 0;
-  }
-  body div.DTED_Lightbox_Wrapper div.DTED_Lightbox_Close {
-    right: 0 !important;
   }
 }
 /*
@@ -1014,20 +992,13 @@ div.DTED_Envelope_Background {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  /* Fallback */
-  background: -ms-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* IE10 Consumer Preview */
-  background: -moz-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* Firefox */
-  background: -o-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* Opera */
-  background: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, rgba(0, 0, 0, 0.3)), color-stop(1, rgba(0, 0, 0, 0.7)));
-  /* Webkit (Safari/Chrome 10) */
-  background: -webkit-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* Webkit (Chrome 11+) */
-  background: radial-gradient(ellipse farthest-corner at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* W3C Markup, IE10 Release Preview */
+  background: rgba(0, 0, 0, 0.7); /* Fallback */
+  background: -ms-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* IE10 Consumer Preview */
+  background: -moz-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* Firefox */
+  background: -o-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* Opera */
+  background: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, rgba(0, 0, 0, 0.3)), color-stop(1, rgba(0, 0, 0, 0.7))); /* Webkit (Safari/Chrome 10) */
+  background: -webkit-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* Webkit (Chrome 11+) */
+  background: radial-gradient(ellipse farthest-corner at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* W3C Markup, IE10 Release Preview */
   z-index: 10;
 }
 div.DTED_Envelope_Background > div {
@@ -1146,6 +1117,7 @@ div.DTE div.editor_upload input[type=file] {
   font-size: 0.8em;
   text-align: center;
   line-height: 1em;
+  margin: 0;
 }
 div.DTE div.editor_upload input[type=file] {
   position: absolute;
@@ -1163,8 +1135,9 @@ div.DTE div.editor_upload div.drop {
   border-radius: 6px;
   min-height: 4em;
   color: #999;
-  padding-top: 3px;
   text-align: center;
+  padding: 1em 2em;
+  line-height: 1.1em;
 }
 div.DTE div.editor_upload div.drop.over {
   border: 3px dashed #111;
@@ -1197,7 +1170,6 @@ div.DTE div.editor_upload.multi div.cell {
 }
 div.DTE div.editor_upload.multi div.cell div.drop {
   min-height: 0;
-  padding-bottom: 5px;
 }
 div.DTE div.editor_upload.multi div.clearValue {
   display: none;

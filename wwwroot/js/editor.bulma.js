@@ -1,31 +1,47 @@
 /*! Bulma integration for DataTables' Editor
- * ©2015 SpryMedia Ltd - datatables.net/license
+ * © SpryMedia Ltd - datatables.net/license
  */
 
 (function( factory ){
 	if ( typeof define === 'function' && define.amd ) {
 		// AMD
-		define( ['jquery', 'datatables.net-bs5', 'datatables.net-editor'], function ( $ ) {
+		define( ['jquery', 'datatables.net-bm', 'datatables.net-editor'], function ( $ ) {
 			return factory( $, window, document );
 		} );
 	}
 	else if ( typeof exports === 'object' ) {
 		// CommonJS
-		module.exports = function (root, $) {
-			if ( ! root ) {
-				root = window;
-			}
-
-			if ( ! $ || ! $.fn.dataTable ) {
-				$ = require('datatables.net-bs5')(root, $).$;
+		var jq = require('jquery');
+		var cjsRequires = function (root, $) {
+			if ( ! $.fn.dataTable ) {
+				require('datatables.net-bm')(root, $);
 			}
 
 			if ( ! $.fn.dataTable.Editor ) {
 				require('datatables.net-editor')(root, $);
 			}
-
-			return factory( $, root, root.document );
 		};
+
+		if (typeof window !== 'undefined') {
+			module.exports = function (root, $) {
+				if ( ! root ) {
+					// CommonJS environments without a window global must pass a
+					// root. This will give an error otherwise
+					root = window;
+				}
+
+				if ( ! $ ) {
+					$ = jq( root );
+				}
+
+				cjsRequires( root, $ );
+				return factory( $, root, root.document );
+			};
+		}
+		else {
+			cjsRequires( window, jq );
+			module.exports = factory( jq, window, window.document );
+		}
 	}
 	else {
 		// Browser
@@ -36,6 +52,8 @@
 var DataTable = $.fn.dataTable;
 
 
+var Editor = DataTable.Editor;
+
 /*
  * Set the default display controller to be our bulma control 
  */
@@ -43,20 +61,15 @@ DataTable.Editor.defaults.display = "bulma";
 
 
 /*
- * Alter the buttons that Editor adds to Buttons so they are suitable for bulma
- */
-var i18nDefaults = DataTable.Editor.defaults.i18n;
-i18nDefaults.create.title = '<h5 class="modal-title">'+i18nDefaults.create.title+'</h5>';
-i18nDefaults.edit.title = '<h5 class="modal-title">'+i18nDefaults.edit.title+'</h5>';
-i18nDefaults.remove.title = '<h5 class="modal-title">'+i18nDefaults.remove.title+'</h5>';
-
-
-/*
  * Change the default classes from Editor to be classes for Bulma
  */
 $.extend( true, $.fn.dataTable.Editor.classes, {
 	"header": {
-		"wrapper": "DTE_Header modal-header"
+		"wrapper": "DTE_Header modal-header",
+		title: {
+			tag: 'h5',
+			class: 'modal-title'
+		}
 	},
 	"body": {
 		"wrapper": "DTE_Body modal-body"
@@ -123,7 +136,7 @@ DataTable.Editor.display.bulma = $.extend( true, {}, DataTable.Editor.models.dis
 	 */
 	init: function ( dte ) {
 		// Add `form-control` to required elements
-		dte.on( 'displayOrder.dtebs', function ( e, display, action, form ) {
+		dte.on( 'displayOrder.dtebm open.dtebm', function ( e, display, action, form ) {
 			$.each( dte.s.fields, function ( key, field ) {
 				$('input:not([type=checkbox]):not([type=radio]), select, textarea', field.node() )
 					.addClass( 'input' );
@@ -199,5 +212,5 @@ DataTable.Editor.display.bulma = $.extend( true, {}, DataTable.Editor.models.dis
 } );
 
 
-return DataTable.Editor;
+return Editor;
 }));

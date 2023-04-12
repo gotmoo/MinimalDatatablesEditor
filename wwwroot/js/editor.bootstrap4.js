@@ -1,5 +1,5 @@
 /*! Bootstrap integration for DataTables' Editor
- * ©2015 SpryMedia Ltd - datatables.net/license
+ * © SpryMedia Ltd - datatables.net/license
  */
 
 (function( factory ){
@@ -11,21 +11,37 @@
 	}
 	else if ( typeof exports === 'object' ) {
 		// CommonJS
-		module.exports = function (root, $) {
-			if ( ! root ) {
-				root = window;
-			}
-
-			if ( ! $ || ! $.fn.dataTable ) {
-				$ = require('datatables.net-bs4')(root, $).$;
+		var jq = require('jquery');
+		var cjsRequires = function (root, $) {
+			if ( ! $.fn.dataTable ) {
+				require('datatables.net-bs4')(root, $);
 			}
 
 			if ( ! $.fn.dataTable.Editor ) {
 				require('datatables.net-editor')(root, $);
 			}
-
-			return factory( $, root, root.document );
 		};
+
+		if (typeof window !== 'undefined') {
+			module.exports = function (root, $) {
+				if ( ! root ) {
+					// CommonJS environments without a window global must pass a
+					// root. This will give an error otherwise
+					root = window;
+				}
+
+				if ( ! $ ) {
+					$ = jq( root );
+				}
+
+				cjsRequires( root, $ );
+				return factory( $, root, root.document );
+			};
+		}
+		else {
+			cjsRequires( window, jq );
+			module.exports = factory( jq, window, window.document );
+		}
 	}
 	else {
 		// Browser
@@ -36,6 +52,8 @@
 var DataTable = $.fn.dataTable;
 
 
+var Editor = DataTable.Editor;
+
 /*
  * Set the default display controller to be our bootstrap control 
  */
@@ -43,20 +61,15 @@ DataTable.Editor.defaults.display = "bootstrap";
 
 
 /*
- * Alter the buttons that Editor adds to Buttons so they are suitable for bootstrap
- */
-var i18nDefaults = DataTable.Editor.defaults.i18n;
-i18nDefaults.create.title = '<h5 class="modal-title">'+i18nDefaults.create.title+'</h5>';
-i18nDefaults.edit.title = '<h5 class="modal-title">'+i18nDefaults.edit.title+'</h5>';
-i18nDefaults.remove.title = '<h5 class="modal-title">'+i18nDefaults.remove.title+'</h5>';
-
-
-/*
  * Change the default classes from Editor to be classes for Bootstrap
  */
 $.extend( true, $.fn.dataTable.Editor.classes, {
 	"header": {
-		"wrapper": "DTE_Header modal-header"
+		"wrapper": "DTE_Header modal-header",
+		title: {
+			tag: 'h5',
+			class: 'modal-title'
+		}
 	},
 	"body": {
 		"wrapper": "DTE_Body modal-body"
@@ -125,7 +138,7 @@ const dom = {
 DataTable.Editor.display.bootstrap = $.extend( true, {}, DataTable.Editor.models.displayController, {
 	init: function ( dte ) {
 		// Add `form-control` to required elements
-		dte.on( 'displayOrder.dtebs', function ( e, display, action, form ) {
+		dte.on( 'displayOrder.dtebs open.dtebs', function ( e, display, action, form ) {
 			$.each( dte.s.fields, function ( key, field ) {
 				$('input:not([type=checkbox]):not([type=radio]), select, textarea', field.node() )
 					.addClass( 'form-control' );
@@ -247,5 +260,5 @@ DataTable.Editor.display.bootstrap = $.extend( true, {}, DataTable.Editor.models
 } );
 
 
-return DataTable.Editor;
+return Editor;
 }));

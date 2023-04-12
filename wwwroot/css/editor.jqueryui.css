@@ -37,6 +37,7 @@ div.DTE_Field select {
   border-radius: 3px;
   border: 1px solid #aaa;
   background: white;
+  max-width: 100%;
 }
 div.DTE_Field label div.DTE_Label_Info {
   font-size: 0.85em;
@@ -225,7 +226,7 @@ div.DTE_Body div.DTE_Body_Content div.DTE_Form_Info {
 div.DTE_Body div.DTE_Body_Content div.DTE_Field {
   position: relative;
   clear: both;
-  padding: 5px 20%;
+  padding: 5px 10%;
   border: 1px solid transparent;
 }
 div.DTE_Body div.DTE_Body_Content div.DTE_Field:after {
@@ -242,21 +243,15 @@ div.DTE_Body div.DTE_Body_Content div.DTE_Field:hover {
 }
 div.DTE_Body div.DTE_Body_Content div.DTE_Field > label {
   float: left;
-  width: 40%;
+  width: 33%;
   padding-top: 3px;
 }
 div.DTE_Body div.DTE_Body_Content div.DTE_Field > div.DTE_Field_Input {
   float: right;
-  width: 60%;
+  width: 66%;
 }
 div.DTE_Body div.DTE_Body_Content div.DTE_Field.full {
-  padding: 5px 0 5px 20%;
-}
-div.DTE_Body div.DTE_Body_Content div.DTE_Field.full > label {
-  width: 30%;
-}
-div.DTE_Body div.DTE_Body_Content div.DTE_Field.full > div.DTE_Field_Input {
-  width: 70%;
+  padding: 5px 0 5px 10%;
 }
 div.DTE_Body div.DTE_Body_Content div.DTE_Field.block > div.DTE_Field_Input {
   float: none;
@@ -322,13 +317,15 @@ html[dir=rtl] div.DTE div.DTE_Form_Buttons button {
   div.DTE_Body div.DTE_Body_Content div.DTE_Field > div.DTE_Field_Input {
     float: none;
     width: auto;
+    margin-top: 4px;
+    margin-bottom: 6px;
   }
   div.DTE_Body div.DTE_Body_Content div.DTE_Field.full, div.DTE_Body div.DTE_Body_Content div.DTE_Field.block {
     padding: 5px 0;
   }
   div.DTE_Body div.DTE_Body_Content div.DTE_Field.full > label,
-div.DTE_Body div.DTE_Body_Content div.DTE_Field.full > div.DTE_Field_Input, div.DTE_Body div.DTE_Body_Content div.DTE_Field.block > label,
-div.DTE_Body div.DTE_Body_Content div.DTE_Field.block > div.DTE_Field_Input {
+  div.DTE_Body div.DTE_Body_Content div.DTE_Field.full > div.DTE_Field_Input, div.DTE_Body div.DTE_Body_Content div.DTE_Field.block > label,
+  div.DTE_Body div.DTE_Body_Content div.DTE_Field.block > div.DTE_Field_Input {
     width: 100%;
   }
 }
@@ -337,6 +334,7 @@ div.DTE_Bubble {
   z-index: 11;
   margin-top: -6px;
   opacity: 0;
+  transition: top 0.5s ease-in-out 0s;
 }
 div.DTE_Bubble div.DTE_Bubble_Liner {
   position: absolute;
@@ -449,20 +447,13 @@ div.DTE_Bubble_Background {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  /* Fallback */
-  background: -ms-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* IE10 Consumer Preview */
-  background: -moz-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* Firefox */
-  background: -o-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* Opera */
-  background: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, rgba(0, 0, 0, 0.3)), color-stop(1, rgba(0, 0, 0, 0.7)));
-  /* Webkit (Safari/Chrome 10) */
-  background: -webkit-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* Webkit (Chrome 11+) */
-  background: radial-gradient(ellipse farthest-corner at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-  /* W3C Markup, IE10 Release Preview */
+  background: rgba(0, 0, 0, 0.7); /* Fallback */
+  background: -ms-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* IE10 Consumer Preview */
+  background: -moz-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* Firefox */
+  background: -o-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* Opera */
+  background: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, rgba(0, 0, 0, 0.3)), color-stop(1, rgba(0, 0, 0, 0.7))); /* Webkit (Safari/Chrome 10) */
+  background: -webkit-radial-gradient(center, ellipse farthest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* Webkit (Chrome 11+) */
+  background: radial-gradient(ellipse farthest-corner at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); /* W3C Markup, IE10 Release Preview */
   z-index: 10;
 }
 div.DTE_Bubble_Background > div {
@@ -666,6 +657,7 @@ div.DTE div.editor_upload input[type=file] {
   font-size: 0.8em;
   text-align: center;
   line-height: 1em;
+  margin: 0;
 }
 div.DTE div.editor_upload input[type=file] {
   position: absolute;
@@ -683,8 +675,9 @@ div.DTE div.editor_upload div.drop {
   border-radius: 6px;
   min-height: 4em;
   color: #999;
-  padding-top: 3px;
   text-align: center;
+  padding: 1em 2em;
+  line-height: 1.1em;
 }
 div.DTE div.editor_upload div.drop.over {
   border: 3px dashed #111;
@@ -717,7 +710,6 @@ div.DTE div.editor_upload.multi div.cell {
 }
 div.DTE div.editor_upload.multi div.cell div.drop {
   min-height: 0;
-  padding-bottom: 5px;
 }
 div.DTE div.editor_upload.multi div.clearValue {
   display: none;
@@ -858,6 +850,8 @@ div.DTE div.DTE_Processing_Indicator {
 div.DTE div.DTE_Form_Buttons {
   text-align: right;
   padding: 0;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 div.DTE_Field_Type_datatable div.dataTables_filter {

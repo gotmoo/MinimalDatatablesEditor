@@ -139,16 +139,17 @@
     "thousands": ".",
     "infoFiltered": "(filtrés depuis un total de _MAX_ éléments)",
     "datetime": {
-        "previous": "Précédent",
-        "next": "Suivant",
+        "amPm": [ "am", "pm" ],
+        "clear": "Cear",
         "hours": "Heures",
         "minutes": "Minutes",
+        "months": [ "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" ],
+        "next": "Premier",
+        "previous": "Précédent",
         "seconds": "Secondes",
+        "today": "Aujourd'hui",
         "unknown": "-",
-        "amPm": [
-            "am",
-            "pm"
-        ]
+        "weekdays": [ "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam" ]
     },
     "editor": {
         "close": "Fermer",
