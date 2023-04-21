@@ -8,12 +8,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="DataTables-Editor-Server" Version="2.1.2" />
       <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.5" />
       <PackageReference Include="MySql.Data" Version="8.0.32.1" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
       <PackageReference Include="Npgsql" Version="7.0.2" />
       <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="DataTables-Editor-Server">
+        <HintPath>..\Editor NET Core demo\lib\netcoreapp2.1\DataTables-Editor-Server.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>
